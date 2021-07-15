@@ -53,6 +53,14 @@
 
                                 {{-- ドロップダウンメニュー --}}
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('sell') }}">
+                                            <i class="fas fa-camera text-left" style="width: 30px"></i>商品を出品する
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('mypage.sold-items') }}">
+                                            <i class="fas fa-store-alt text-left" style="width: 30px"></i>出品した商品
+                                        </a>
+
                                         <a class="dropdown-item" href="{{ route('mypage.edit-profile') }}">
                                             <i class="far fa-address-card text-left" style="width: 30px"></i>プロフィール編集
                                         </a>
@@ -73,5 +81,8 @@
                 </div>
             </div>
         </nav>
+        <div class="container" style="margin-top:80px">
+            @yield('content')
+        </div>
     </body>
 </html>
