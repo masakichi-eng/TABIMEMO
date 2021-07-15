@@ -18,4 +18,11 @@ class ItemsController extends Controller
              ->with('items', $items)
              ->with('user', Auth::user());
      }
+
+     public function showItemDetail(Item $item)
+     {
+         return view('items.item_detail')
+             ->with('item', $item)
+             ->with('user', Auth::user());
+     }
 }
