@@ -10,14 +10,25 @@ use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use App\Models\PrimaryCategory;
 
 class ProfileController extends Controller
 {
     public function showProfileEditForm()
      {
-         return view('mypage.profile_edit_form')
-             ->with('user', Auth::user());
-     }
+        $categories = PrimaryCategory::query()
+             ->with([
+                 'secondaryCategories' => function ($query) {
+                     $query->orderBy('sort_no');
+                 }
+             ])
+             ->orderBy('sort_no')
+             ->get();
+
+        return view('mypage.profile_edit_form')
+             ->with('user', Auth::user())
+             ->with('categories', $categories);
+    }
 
      public function editProfile(EditRequest $request)
      {
