@@ -10,11 +10,14 @@
     "require": {
         "php": "^7.2.5|^8.0",
         "fideloper/proxy": "^4.4",
+        "intervention/image": "2.5.1",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "1.0"
+        "laravel/ui": "1.0",
+        "payjp/payjp-php": "1.2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "3.4.2",
         "facade/ignition": "^1.16.15",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.0",

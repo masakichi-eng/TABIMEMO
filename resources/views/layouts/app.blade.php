@@ -1,80 +1,129 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
+ 
+        <link rel="shortcut icon" href="/images/logo.ico">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    </head>
+    <body>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="/images/logo-1.png" style="height: 39px;" alt="Melpit">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                        <form class="form-inline" method="GET" action="{{ route('top') }}">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <select class="custom-select" name="category">
+                                        <option value="">全て</option>
+                                        @foreach ($categories as $category)
+                                            <option value="primary:{{$category->id}}" class="font-weight-bold">{{$category->name}}</option>
+                                            @foreach ($category->secondaryCategories as $secondary)
+                                                <option value="secondary:{{$secondary->id}}">　{{$secondary->name}}</option>
+                                            @endforeach
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="text" name="keyword" class="form-control" aria-label="Text input with dropdown button" placeholder="キーワード検索">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-outline-dark">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                         @guest
+                            {{-- 非ログイン --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="btn btn-secondary ml-3" href="{{ route('register') }}" role="button">会員登録</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                            <li class="nav-item">
+                                <a class="btn btn-outline-info ml-2" href="{{ route('login') }}" role="button">ログイン</a>
+                            </li>
                         @else
-                            <li class="nav-item dropdown">
+                            {{-- ログイン済み --}}
+                            <li class="nav-item dropdown ml-2">
+                                {{-- ログイン情報 --}}
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    @if (!empty($user->avatar_file_name))
+                                        <img src="/storage/avatars/{{$user->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+                                    @else
+                                        <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+                                    @endif
+                                    {{ $user->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                {{-- ドロップダウンメニュー --}}
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-item-text">
+                                        <div class="row no-gutters">
+                                            <div class="col">売上金</div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-yen-sign"></i>
+                                                <span class="ml-1">{{number_format($user->sales)}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item-text">
+                                        <div class="row no-gutters">
+                                            <div class="col">出品数</div>
+                                            <div class="col-auto">{{number_format($user->soldItems->count())}} 個</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('sell') }}">
+                                            <i class="fas fa-camera text-left" style="width: 30px"></i>商品を出品する
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                        <a class="dropdown-item" href="{{ route('mypage.sold-items') }}">
+                                            <i class="fas fa-store-alt text-left" style="width: 30px"></i>出品した商品
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('mypage.bought-items') }}">
+                                            <i class="fas fa-shopping-bag text-left" style="width: 30px"></i>購入した商品
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('mypage.edit-profile') }}">
+                                            <i class="far fa-address-card text-left" style="width: 30px"></i>プロフィール編集
+                                        </a>
+            
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt text-left" style="width: 30px"></i>ログアウト
+                                        </a>
+            
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
                             </li>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+        <div class="container" style="margin-top:80px">
             @yield('content')
-        </main>
-    </div>
-</body>
+        </div>
+    </body>
 </html>
