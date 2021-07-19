@@ -57,6 +57,16 @@ class CreateAppTables extends Migration
             $table->foreign('secondary_category_id')->references('id')->on('secondary_categories');
             $table->foreign('item_condition_id')->references('id')->on('item_conditions');
         });
+
+        
+        Schema::create('articles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->text('body');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
@@ -70,5 +80,6 @@ class CreateAppTables extends Migration
         Schema::dropIfExists('item_conditions');
         Schema::dropIfExists('secondary_categories');
         Schema::dropIfExists('primary_categories');
+        Schema::dropIfExists('articles');
     }
 }
