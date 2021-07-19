@@ -15,7 +15,9 @@ Route::get('', 'ItemsController@showItems')->name('top');
 
 Auth::routes();
 
-Route::get('/articles', 'ArticleController@index');
+Route::get('/articles/home', 'ArticleController@index')->name('articles.index'); 
+Route::resource('/articles', 'ArticleController')->except(['index','show'])->middleware('auth'); 
+Route::resource('/articles', 'ArticleController')->only(['show']);
 
 Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
 
