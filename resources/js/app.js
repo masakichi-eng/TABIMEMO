@@ -15,7 +15,7 @@ import Vue from 'vue'
 //     };
 //     reader.readAsDataURL(input.files[0]);
 //   });
-Vue.component('component-articlelike', require('./components/ArticleLike.vue').default);
+Vue.component('article-like', require('./components/ArticleLike.vue').default);
 const app = new Vue({
   el: '#app'
 })

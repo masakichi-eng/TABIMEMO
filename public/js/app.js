@@ -1993,7 +1993,7 @@ __webpack_require__.r(__webpack_exports__);
 //     reader.readAsDataURL(input.files[0]);
 //   });
 
-vue__WEBPACK_IMPORTED_MODULE_1__.default.component('component-articlelike', __webpack_require__(/*! ./components/ArticleLike.vue */ "./resources/js/components/ArticleLike.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_1__.default.component('article-like', __webpack_require__(/*! ./components/ArticleLike.vue */ "./resources/js/components/ArticleLike.vue").default);
 var app = new vue__WEBPACK_IMPORTED_MODULE_1__.default({
   el: '#app'
 });
