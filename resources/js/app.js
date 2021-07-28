@@ -2,8 +2,7 @@
 // import { library, dom } from '@fortawesome/fontawesome-svg-core'
 // import { faAddressCard, faClock } from '@fortawesome/free-regular-svg-icons'
 // import { faSearch, faStoreAlt, faShoppingBag, faSignOutAlt, faYenSign, faCamera } from '@fortawesome/free-solid-svg-icons'
-import './bootstrap'
-import Vue from 'vue'
+
 // library.add(faSearch, faAddressCard, faStoreAlt, faShoppingBag, faSignOutAlt, faYenSign, faClock, faCamera);
 // dom.watch();
 // document.querySelector('.image-picker input')
@@ -15,7 +14,14 @@ import Vue from 'vue'
 //     };
 //     reader.readAsDataURL(input.files[0]);
 //   });
-Vue.component('article-like', require('./components/ArticleLike.vue').default);
+
+import './bootstrap'
+import Vue from 'vue'
+import ArticleLike from './components/ArticleLike'
+
 const app = new Vue({
-  el: '#app'
+  el: '#app',
+  components: {
+    ArticleLike,
+  }
 })
