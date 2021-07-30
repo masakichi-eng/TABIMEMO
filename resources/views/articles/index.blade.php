@@ -5,7 +5,7 @@
 @section('content')
   @include('nav')
   <div class="container">
-    @foreach($articles as $article) {{--この行を追加--}} 
+    @foreach($articles as $article)
     @include('articles.card') 
     @endforeach 
   </div>

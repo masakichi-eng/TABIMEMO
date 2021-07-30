@@ -2065,8 +2065,6 @@ __webpack_require__.r(__webpack_exports__);
 // import { faSearch, faStoreAlt, faShoppingBag, faSignOutAlt, faYenSign, faCamera } from '@fortawesome/free-solid-svg-icons'
 // library.add(faSearch, faAddressCard, faStoreAlt, faShoppingBag, faSignOutAlt, faYenSign, faClock, faCamera);
 // dom.watch();
-__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
-
 
 
 
