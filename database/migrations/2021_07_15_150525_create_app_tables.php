@@ -58,7 +58,6 @@ class CreateAppTables extends Migration
             $table->foreign('item_condition_id')->references('id')->on('item_conditions');
         });
 
-        
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
@@ -76,6 +75,29 @@ class CreateAppTables extends Migration
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('tags', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->unique();
+            $table->timestamps();
+        });
+
+        Schema::create('article_tag', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('article_id');
+            $table->foreign('article_id')
+                ->references('id')
+                ->on('articles')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id')
+                ->references('id')
+                ->on('tags')
+                ->onDelete('cascade');
+            $table->timestamps();
+        });
+
+
     }
 
     /**
@@ -91,5 +113,7 @@ class CreateAppTables extends Migration
         Schema::dropIfExists('primary_categories');
         Schema::dropIfExists('likes');
         Schema::dropIfExists('articles');
+        Schema::dropIfExists('tags');
+        Schema::dropIfExists('article_tag');
     }
 }

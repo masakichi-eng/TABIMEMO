@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class ArticleController extends Controller
 {
@@ -16,8 +18,11 @@ class ArticleController extends Controller
     
     public function index()
     {
+        $user = User::all();
         $articles = Article::all()->sortByDesc('created_at');
-        return view('articles.index', ['articles' => $articles]);
+        // dd($user);
+        return view('articles.index', ['articles' => $articles,'user' => $user]);
+        
     }
 
     public function create()
@@ -30,6 +35,10 @@ class ArticleController extends Controller
         $article->fill($request->all());
         $article->user_id = $request->user()->id;
         $article->save();
+        $request->tags->each(function ($tagName) use ($article) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $article->tags()->attach($tag);
+        });
         return redirect()->route('articles.index');
     }
 
