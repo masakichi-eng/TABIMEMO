@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\MyPage;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,15 @@ use App\Models\PrimaryCategory;
 
 class ProfileController extends Controller
 {
+    public function show(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return view('users.show', [
+            'user' => $user,
+        ]);
+    }
+    
     public function showProfileEditForm()
      {
         $categories = PrimaryCategory::query()

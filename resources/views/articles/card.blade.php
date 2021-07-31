@@ -1,14 +1,17 @@
 <div class="card mt-3">
   <div class="card-body d-flex flex-row">
-      @if (!empty($user->avatar_file_name))
-          <img src="/storage/avatars/{{$user->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+  <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">
+      @if (!empty($article->user->avatar_file_name))
+          <img src="/storage/avatars/{{$article->user->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
       @else
           <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
       @endif
-    <div>
-      <div class="font-weight-bold">{{ $article->user->name }}</div>
-      <div class="font-weight-lighter">{{ $article->created_at->format('Y/m/d H:i') }}</div>
-    </div>
+  </a>
+  <div>
+    <div class="font-weight-bold">
+    <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">{{ $article->user->name }}</a></div>
+    <div class="font-weight-lighter">{{ $article->created_at->format('Y/m/d H:i') }}</div>
+  </div>
 
   @if( Auth::id() === $article->user_id )
     <!-- dropdown -->
@@ -83,8 +86,8 @@
       <div class="card-body pt-0 pb-4 pl-3">
         <div class="card-text line-height">
     @endif
-          <a href="" class="border p-1 mr-1 mt-1 text-muted">
-            {{ $tag->name }}
+    <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 mr-1 mt-1 text-muted">
+            {{ $tag->hashtag }}
           </a>
     @if($loop->last)
         </div>

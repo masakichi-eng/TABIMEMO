@@ -23,6 +23,8 @@ Route::prefix('articles')->name('articles.')->group(function () {
     Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike')->middleware('auth');
 });
 
+Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
+
 Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
 
 Route::middleware('auth')
@@ -37,6 +39,7 @@ Route::prefix('mypage')
      ->namespace('MyPage')
      ->middleware('auth')
      ->group(function () {
+         Route::get('/{name}', 'ProfileController@show')->name('mypage.show');
          Route::get('edit-profile', 'ProfileController@showProfileEditForm')->name('mypage.edit-profile');
          Route::post('edit-profile', 'ProfileController@editProfile')->name('mypage.edit-profile');
          Route::get('bought-items', 'BoughtItemsController@showBoughtItems')->name('mypage.bought-items');

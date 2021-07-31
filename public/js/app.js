@@ -2008,26 +2008,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     VueTagsInput: (_johmun_vue_tags_input__WEBPACK_IMPORTED_MODULE_0___default())
   },
+  props: {
+    initialTags: {
+      type: Array,
+      "default": []
+    },
+    autocompleteItems: {
+      type: Array,
+      "default": []
+    }
+  },
   data: function data() {
     return {
       tag: "",
-      tags: [],
-      autocompleteItems: [{
-        text: "Spain"
-      }, {
-        text: "France"
-      }, {
-        text: "USA"
-      }, {
-        text: "Germany"
-      }, {
-        text: "China"
-      }]
+      tags: this.initialTags
     };
   },
   computed: {
@@ -6618,7 +6618,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.vue-tags-input .ti-tag {\n  background: transparent;\n  border: 1px solid #747373;\n  color: #747373;\n  margin-right: 4px;\n  border-radius: 0px;\n  font-size: 13px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.vue-tags-input .ti-tag {\n  background: transparent;\n  border: 1px solid #747373;\n  color: #747373;\n  margin-right: 4px;\n  border-radius: 0px;\n  font-size: 13px;\n}\n.vue-tags-input .ti-tag::before {\n  content: \"#\";\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38989,7 +38989,8 @@ var render = function() {
         attrs: {
           tags: _vm.tags,
           placeholder: "タグを5個まで入力できます",
-          "autocomplete-items": _vm.filteredItems
+          "autocomplete-items": _vm.filteredItems,
+          "add-on-key": [13, 32]
         },
         on: {
           "tags-changed": function(newTags) {
