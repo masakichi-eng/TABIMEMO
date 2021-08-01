@@ -21,7 +21,8 @@
       <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a> {{--この行のhref属性を変更--}}
     </li>
     @endauth
-
+    
+    @auth
     <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -30,8 +31,13 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
         <button class="dropdown-item" type="button"
-                onclick="location.href=''">
+                onclick="location.href='{{ route('mypage.show', ['name' => Auth::user()->name]) }}'">
           マイページ
+        </button>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" type="button"
+                onclick="location.href='{{ route('top') }}'">
+          お買い物ページ
         </button>
         <div class="dropdown-divider"></div>
         <button form="logout-button" class="dropdown-item" type="submit">
@@ -39,9 +45,11 @@
         </button>
       </div>
     </li>
-    <form id="logout-button" method="POST" action="">
+    <form id="logout-button" method="POST" action="{{ route('logout') }}"> 
+    @csrf
     </form>
     <!-- Dropdown -->
+    @endauth
 
   </ul>
 

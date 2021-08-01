@@ -97,7 +97,20 @@ class CreateAppTables extends Migration
             $table->timestamps();
         });
 
-
+        Schema::create('follows', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('follower_id');
+            $table->foreign('follower_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('followee_id');
+            $table->foreign('followee_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -112,8 +125,9 @@ class CreateAppTables extends Migration
         Schema::dropIfExists('secondary_categories');
         Schema::dropIfExists('primary_categories');
         Schema::dropIfExists('likes');
-        Schema::dropIfExists('articles');
-        Schema::dropIfExists('tags');
         Schema::dropIfExists('article_tag');
+        Schema::dropIfExists('tags');
+        Schema::dropIfExists('articles');
+        Schema::dropIfExists('follows');
     }
 }
