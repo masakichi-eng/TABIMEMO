@@ -37,13 +37,17 @@ Route::middleware('auth')
 
 Route::prefix('mypage')
      ->namespace('MyPage')
-     ->middleware('auth')
      ->group(function () {
-         Route::get('edit-profile', 'ProfileController@showProfileEditForm')->name('mypage.edit-profile');
-         Route::get('sold-items', 'SoldItemsController@showSoldItems')->name('mypage.sold-items');
-         Route::get('bought-items', 'BoughtItemsController@showBoughtItems')->name('mypage.bought-items');
-         Route::get('/{name}', 'ProfileController@show')->name('mypage.show');
-         Route::put('/{name}/follow', 'ProfileController@follow')->name('follow');
-         Route::delete('/{name}/follow', 'ProfileController@unfollow')->name('unfollow');
-         Route::post('edit-profile', 'ProfileController@editProfile')->name('mypage.edit-profile');
-     });
+         Route::get('/{name}/likes', 'ProfileController@likes')->name('mypage.likes');
+         Route::middleware('auth')->group(function () {
+             Route::get('edit-profile', 'ProfileController@showProfileEditForm')->name('mypage.edit-profile');
+             Route::post('edit-profile', 'ProfileController@editProfile')->name('mypage.edit-profile');
+             Route::get('sold-items', 'SoldItemsController@showSoldItems')->name('mypage.sold-items');
+             Route::get('bought-items', 'BoughtItemsController@showBoughtItems')->name('mypage.bought-items');
+             Route::get('/{name}', 'ProfileController@show')->name('mypage.show');
+             Route::put('/{name}/follow', 'ProfileController@follow')->name('follow');
+             Route::delete('/{name}/follow', 'ProfileController@unfollow')->name('unfollow');
+             Route::get('/{name}/followings', 'ProfileController@followings')->name('mypage.followings');
+             Route::get('/{name}/followers', 'ProfileController@followers')->name('mypage.followers');
+    });
+});

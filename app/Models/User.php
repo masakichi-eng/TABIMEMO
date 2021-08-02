@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
 
 class User extends Authenticatable
 {
@@ -65,13 +67,23 @@ class User extends Authenticatable
          return $this->belongsToMany('App\Models\User', 'follows', 'follower_id', 'followee_id')->withTimestamps();
      }
 
+     public function likes(): BelongsToMany
+     {
+         return $this->belongsToMany('App\Article', 'likes')->withTimestamps();
+     }
+
      public function getCountFollowersAttribute(): int
-    {
+     {
         return $this->followers->count();
-    }
+     }
 
     public function getCountFollowingsAttribute(): int
     {
         return $this->followings->count();
+    }
+
+    public function articles(): HasMany
+    {
+        return $this->hasMany('App\Article');
     }
 }

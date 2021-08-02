@@ -24,9 +24,9 @@
 <body class="h-100 d-flex justify-content-center align-items-center">
     <div class="app app-only-content">
         {{-- ロゴ画像 --}}
-        <div class="d-flex justify-content-center">
+        <!-- <div class="d-flex justify-content-center">
             <a href="{{route('top')}}"><img src="/images/logo-1.png" /></a>
-        </div>
+        </div> -->
         {{-- コンテンツ部分 --}}
         <div class="d-flex justify-content-center mt-3">
             <div class="col-auto">
