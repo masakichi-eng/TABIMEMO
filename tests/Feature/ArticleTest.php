@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Article;
 use App\Models\User;
+use App\Image;
+use Illuminate\Http\UploadedFile;
 
 class ArticleTest extends TestCase
 {
