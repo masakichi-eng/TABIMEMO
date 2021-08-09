@@ -7,8 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Article;
 use App\Models\User;
-use App\Image;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Http\Testing\imagecreatetruecolor;
 
 class ArticleTest extends TestCase
 {
