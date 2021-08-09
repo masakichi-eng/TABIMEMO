@@ -57,6 +57,61 @@ class CreateAppTables extends Migration
             $table->foreign('secondary_category_id')->references('id')->on('secondary_categories');
             $table->foreign('item_condition_id')->references('id')->on('item_conditions');
         });
+
+        Schema::create('articles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('article_image_file_name');
+            $table->text('body');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+        Schema::create('likes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('article_id');
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('tags', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->unique();
+            $table->timestamps();
+        });
+
+        Schema::create('article_tag', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('article_id');
+            $table->foreign('article_id')
+                ->references('id')
+                ->on('articles')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id')
+                ->references('id')
+                ->on('tags')
+                ->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('follows', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('follower_id');
+            $table->foreign('follower_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('followee_id');
+            $table->foreign('followee_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -70,5 +125,10 @@ class CreateAppTables extends Migration
         Schema::dropIfExists('item_conditions');
         Schema::dropIfExists('secondary_categories');
         Schema::dropIfExists('primary_categories');
+        Schema::dropIfExists('likes');
+        Schema::dropIfExists('article_tag');
+        Schema::dropIfExists('tags');
+        Schema::dropIfExists('articles');
+        Schema::dropIfExists('follows');
     }
 }

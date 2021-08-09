@@ -16,16 +16,15 @@
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo-1.png" style="height: 39px;" alt="Melpit">
+                <a class="navbar-brand" href="{{ url('/items/top') }}">
+                    Tabimemo
+                    <!-- <img src="/images/名前.png" style="height: 39px;" alt="Tabimemo"> -->
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -90,6 +89,9 @@
                                         </div>
                                     </div>
                                     <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('articles.index') }}">
+                                            <i class="fab fa-avianex text-left" style="width: 30px"></i>メモリーず
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('sell') }}">
                                             <i class="fas fa-camera text-left" style="width: 30px"></i>商品を出品する
                                         </a>

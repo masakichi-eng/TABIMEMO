@@ -4,7 +4,11 @@
     商品一覧
 @endsection
 
+
 @section('content')
+
+
+
 <div class="container">
     <div class="row">
         @foreach ($items as $item)
