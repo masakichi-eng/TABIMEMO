@@ -1,4 +1,9 @@
-<div class="card mt-3">
+<div class="card mt-3 max-width: 500px;">
+  <div class="card-body d-flex flex-row">
+    <div>
+  <img class="card-img-top" src="/storage/article-images/{{$article->article_image_file_name}}" style="object-fit: cover; width: 300px; height: 300px;">
+  </div>
+  <div>
   <div class="card-body d-flex flex-row">
   <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">
       @if (!empty($article->user->avatar_file_name))
@@ -7,15 +12,15 @@
           <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
       @endif
   </a>
-  <div>
-    <div class="font-weight-bold">
+  <div class= "ml-2 " >
+    <div class="font-weight-bold ">
     <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">{{ $article->user->name }}</a></div>
     <div class="font-weight-lighter">{{ $article->created_at->format('Y/m/d H:i') }}</div>
   </div>
 
   @if( Auth::id() === $article->user_id )
     <!-- dropdown -->
-      <div class="ml-auto card-text">
+      <div class="ml-auto card-text ">
         <div class="dropdown">
           <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ellipsis-v"></i>
@@ -58,10 +63,11 @@
       </div>
       <!-- modal -->
     @endif
+    </div>
 
-  </div>
+
   <div class="card-body pt-0">
-    <h3 class="h4 card-title">
+    <h3 class="h3 card-title">
       <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
         {{ $article->title }}
       </a>
@@ -94,4 +100,6 @@
       </div>
     @endif
   @endforeach
+  </div>
+  </div>
   </div>

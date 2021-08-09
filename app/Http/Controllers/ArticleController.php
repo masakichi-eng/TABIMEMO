@@ -43,7 +43,6 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request, Article $article)
     {
-        dd($request);
         $imageName = $this->saveImage($request->file('article-image'));
         $article->article_image_file_name       = $imageName;
         $article->title = $request->title;
@@ -79,7 +78,12 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
-        $article->fill($request->all())->save();
+        $imageName = $this->saveImage($request->file('article-image'));
+        $article->article_image_file_name       = $imageName;
+        $article->title = $request->title;
+        $article->body = $request->body;
+        $article->user_id = $request->user()->id;
+        $article->save();
 
         $article->tags()->detach();
         $request->tags->each(function ($tagName) use ($article) {
