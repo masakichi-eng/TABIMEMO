@@ -4,10 +4,10 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\imagecreatetruecolor;
 use Tests\TestCase;
 use App\Article;
 use App\Models\User;
-use Illuminate\Http\Testing\imagecreatetruecolor;
 
 class ArticleTest extends TestCase
 {
