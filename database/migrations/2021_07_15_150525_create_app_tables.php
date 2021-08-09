@@ -61,6 +61,7 @@ class CreateAppTables extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->string('article_image_file_name');
             $table->text('body');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

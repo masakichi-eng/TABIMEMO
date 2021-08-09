@@ -6,7 +6,10 @@ use App\Article;
 use App\Tag;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ArticleController extends Controller
 {
@@ -40,7 +43,11 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request, Article $article)
     {
-        $article->fill($request->all()); 
+        dd($request);
+        $imageName = $this->saveImage($request->file('article-image'));
+        $article->article_image_file_name       = $imageName;
+        $article->title = $request->title;
+        $article->body = $request->body;
         $article->user_id = $request->user()->id;
         $article->save();
 
@@ -115,4 +122,34 @@ class ArticleController extends Controller
             'countLikes' => $article->count_likes,
         ];
     }
+
+    /**
+      * 商品画像をリサイズして保存します
+      *
+      * @param UploadedFile $file アップロードされた商品画像
+      * @return string ファイル名
+      */
+      private function saveImage(UploadedFile $file): string
+      {
+          $tempPath = $this->makeTempPath();
+  
+          Image::make($file)->fit(300, 300)->save($tempPath);
+  
+          $filePath = Storage::disk('public')
+              ->putFile('article-images', new File($tempPath));
+  
+          return basename($filePath);
+      }
+  
+      /**
+       * 一時的なファイルを生成してパスを返します。
+       *
+       * @return string ファイルパス
+       */
+      private function makeTempPath(): string
+      {
+          $tmp_fp = tmpfile();
+          $meta   = stream_get_meta_data($tmp_fp);
+          return $meta["uri"];
+      }
 }
