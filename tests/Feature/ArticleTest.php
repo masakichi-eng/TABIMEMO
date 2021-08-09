@@ -4,44 +4,43 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\imagecreatetruecolor;
 use Tests\TestCase;
 use App\Article;
 use App\Models\User;
 
-class ArticleTest extends TestCase
-{
-    use RefreshDatabase;
+// class ArticleTest extends TestCase
+// {
+//     use RefreshDatabase;
 
-    public function testIsLikedByNull()
-    {
-        $article = factory(Article::class)->create();
+//     public function testIsLikedByNull()
+//     {
+//         $article = factory(Article::class)->create();
 
-        $result = $article->isLikedBy(null);
+//         $result = $article->isLikedBy(null);
 
-        $this->assertFalse($result);
-    }
+//         $this->assertFalse($result);
+//     }
 
-    public function testIsLikedByTheUser()
-    {
-        $article = factory(Article::class)->create();
-        $user = factory(User::class)->create();
-        $article->likes()->attach($user);
+//     public function testIsLikedByTheUser()
+//     {
+//         $article = factory(Article::class)->create();
+//         $user = factory(User::class)->create();
+//         $article->likes()->attach($user);
 
-        $result = $article->isLikedBy($user);
+//         $result = $article->isLikedBy($user);
 
-        $this->assertTrue($result);
-    }
+//         $this->assertTrue($result);
+//     }
 
-    public function testIsLikedByAnother()
-    {
-        $article = factory(Article::class)->create();
-        $user = factory(User::class)->create();
-        $another = factory(User::class)->create();
-        $article->likes()->attach($another);
+//     public function testIsLikedByAnother()
+//     {
+//         $article = factory(Article::class)->create();
+//         $user = factory(User::class)->create();
+//         $another = factory(User::class)->create();
+//         $article->likes()->attach($another);
 
-        $result = $article->isLikedBy($user);
+//         $result = $article->isLikedBy($user);
 
-        $this->assertFalse($result);
-    }
-}
+//         $this->assertFalse($result);
+//     }
+// }
