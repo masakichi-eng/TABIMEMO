@@ -2,51 +2,35 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mysql:8.0.0
-        command: mysqld --default-authentication-plugin=mysql_native_password
-    environment:
-      - DB_CONNECTION: circle_testing
-      - APP_ENV: testing
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
-      - MYSQL_ROOT_HOST: '%'
-      - MYSQL_DATABASE: circle_test
-    working_directory: ~/ci-demo
+      - image: circleci/php:7.3-node-browsers
     steps:
       - checkout
-      - run: 
-          name: Update apt-get
-          command: sudo apt-get update
+      - run: sudo composer self-update --1
       - run:   
           name: Install php-gd
           command: |
             sudo apt-get -y install libpng-dev  
             sudo docker-php-ext-install  gd 
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m 
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "backend/composer.json" }}
-            - v1-dependencies-
-      - run:
-          working_directory: backend
-          name: Install PHP libraries
-          command: composer install -n --prefer-dist
+          key: composer-v1-{{ checksum "composer.lock" }}
+      - run: composer install -n --prefer-dist
       - save_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
           paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "backend/composer.json" }}
+            - vendor
+      - restore_cache:
+          key: npm-v1-{{ checksum "package-lock.json" }}
       - run:
-          working_directory: backend
-          command: composer install
+          name: npm ci
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi 
+      - save_cache:
+          key: npm-v1-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run: npm run dev
       - run:
-          working_directory: backend
-          command: php artisan migrate
-      - run:
-          working_directory: backend
-          name: Run PHPUnit
-          command: ./vendor/bin/phpunit
+          name: php test
+          command: vendor/bin/phpunit
