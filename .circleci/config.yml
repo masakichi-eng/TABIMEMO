@@ -6,6 +6,11 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update --1
+      - run:   
+          name: Install php-gd
+          command: |
+            sudo apt-get -y install libpng-dev  
+            sudo docker-php-ext-install  gd 
       - restore_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
       - run: composer install -n --prefer-dist
