@@ -14,17 +14,17 @@ class PrimaryCategorySeeder extends Seeder
     {
         factory(PrimaryCategory::class)->create([
             'id'      => 1,
-            'name'    => 'レディース',
+            'name'    => '食べ物',
             'sort_no' => 1,
         ]);
         factory(PrimaryCategory::class)->create([
             'id'      => 2,
-            'name'    => 'メンズ',
+            'name'    => 'グッズ',
             'sort_no' => 2,
         ]);
         factory(PrimaryCategory::class)->create([
             'id'      => 3,
-            'name'    => 'ベビー・キッズ',
+            'name'    => 'メモリー',
             'sort_no' => 3,
         ]);
         factory(PrimaryCategory::class)->create([
