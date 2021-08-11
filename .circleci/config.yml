@@ -48,7 +48,7 @@ jobs:
               git pull origin master && \
               composer install -n --no-dev --prefer-dist && \
               npm ci && \
-              npm run prod && \
+              npm run dev && \
               php artisan migrate --force && \
               php artisan config:cache"
 
