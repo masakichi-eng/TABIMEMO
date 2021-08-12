@@ -40,9 +40,16 @@ class ItemsController extends Controller
             });
         }
 
-         $items = $query->orderByRaw( "FIELD(state, '" . Item::STATE_SELLING . "', '" . Item::STATE_BOUGHT . "')" )
-             ->orderBy('id', 'DESC')
-             ->paginate(3);
+        // PostgreSQLの場合
+        $items = $query->orderByRaw("(CASE state WHEN '1' THEN 'selling' 
+                                                  WHEN '2' THEN 'bought' END)")
+                                                  ->orderBy('id', 'DESC')
+                                                  ->paginate(3);
+
+        //MySQLの場合
+        // $items = $query->orderByRaw( "FIELD(state, '" . Item::STATE_SELLING . "', '" . Item::STATE_BOUGHT . "')" )
+        //      ->orderBy('id', 'DESC')
+        //      ->paginate(3);
 
              $categories = PrimaryCategory::query()
              ->with([
