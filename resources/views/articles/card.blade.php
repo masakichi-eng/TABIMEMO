@@ -1,5 +1,5 @@
 <div class="card mt-3 max-width: 500px;">
-  <div class="card-body d-flex flex-row">
+  <div class="card-body d-flex flex-row" style="flex-wrap: wrap;">
     <div>
   <img class="card-img-top" src="/storage/article-images/{{$article->article_image_file_name}}" style="object-fit: cover; width: 300px; height: 300px;">
   </div>

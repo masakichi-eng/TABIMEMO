@@ -14,7 +14,8 @@
 
 
 {{-- 画像 --}}
-<div>投稿画像</div>
+<div>投稿画像 </div>
+<div style=color:red;>(注)jpeg,png形式 サイズ:2MB未満</div>
 <span class="article-image-form image-picker">
     <input type="file"  name="article-image" class="d-none" accept="image/png,image/jpeg,image/gif" id="article-image" />
     <label for="article-image" class="d-inline-block" role="button">
