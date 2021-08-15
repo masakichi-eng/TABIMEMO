@@ -54,9 +54,9 @@
                 <div class="mt-3">
                     アカウントをお持ちでない方は<a href="{{ route('register') }}">こちら</a>
                 </div>
-                <div class="mt-1">
+                <!-- <div class="mt-1">
                     パスワードをお忘れの方は<a href="{{ route('password.request') }}">こちら</a>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>
