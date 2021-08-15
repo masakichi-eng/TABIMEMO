@@ -19,7 +19,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link rel="shortcut icon" href="/images/logo.ico">
 </head>
 <body class="h-100 d-flex justify-content-center align-items-center">
     <div class="app app-only-content">
