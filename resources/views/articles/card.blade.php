@@ -1,8 +1,12 @@
 <div class="card mt-3 max-width: 500px;">
   <div class="card-body d-flex flex-row" style="flex-wrap: wrap;">
     <div>
-  <img class="card-img-top" src="/storage/article-images/{{$article->article_image_file_name}}" style="object-fit: cover; width: 300px; height: 300px;">
-  </div>
+      @if (!empty($article->article_image_file_name))
+        <img class="card-img-top" src="/storage/article-images/{{$article->article_image_file_name}}" style="object-fit: cover; width: 300px; height: 300px;">
+      @else
+          <img src="/images/noimage.jpg" style="width: 300px; height: 300px;">
+      @endif
+    </div>
   <div>
   <div class="card-body d-flex flex-row">
   <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">
@@ -82,7 +86,7 @@
         :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
         :initial-count-likes='@json($article->count_likes)'
         :authorized='@json(Auth::check())'
-        endpoint="{{ route('articles.like', ['article' => $article]) }}" 
+        endpoint="{{ route('articles.like', ['article' => $article]) }}"
       >
       </article-like>
   </div>
