@@ -141,7 +141,7 @@ class ArticleController extends Controller
     {
         $tempPath = $this->makeTempPath();
 
-        Image::make($file)->fit(300, 300)->save($tempPath);
+        Image::make($file)->fit(480, 270)->save($tempPath);
 
         $filePath = Storage::disk('public')
             ->putFile('article-images', new File($tempPath));
