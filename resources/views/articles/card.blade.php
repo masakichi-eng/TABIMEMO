@@ -1,6 +1,6 @@
-<div class="card mt-3">
+<div class="card mb-5">
     <div class="card-body d-flex flex-row" style="flex-wrap: wrap;">
-        <div>
+        <div class="col-6">
         @if (!empty($article->article_image_file_name))
             <img class="card-img-top" src="/storage/article-images/{{$article->article_image_file_name}}">
         @else

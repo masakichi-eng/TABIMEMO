@@ -11,11 +11,10 @@ class TopController extends Controller
 {
     public function index()
     {
-        $articles = Article::all()->sortByDesc('created_at')
+        $articles = Article::paginate(5)->sortByDesc('created_at')
             ->load(['user', 'likes', 'tags']);
 
         $query = Item::query();
-
         // PostgreSQLの場合
         $items = $query->orderByRaw("(CASE state WHEN '1' THEN 'selling'
                                                       WHEN '2' THEN 'bought' END)")
