@@ -2203,6 +2203,32 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_4__.default({
     FollowButton: _components_FollowButton__WEBPACK_IMPORTED_MODULE_3__.default
   }
 });
+$(function () {
+  /* SP menu */
+  function toggleNav() {
+    var body = document.body;
+    var hamburger = document.getElementById('nav_btn');
+    var blackBg = document.getElementById('nav_bg');
+    hamburger.addEventListener('click', function () {
+      body.classList.add('nav_open'); //メニュークリックでnav-openというクラスがbodyに付与
+    });
+    blackBg.addEventListener('click', function () {
+      body.classList.remove('nav_open'); //もう一度クリックで解除
+    });
+  }
+
+  toggleNav();
+});
+document.querySelector('.image-picker input').addEventListener('change', function (e) {
+  var input = e.target;
+  var reader = new FileReader();
+
+  reader.onload = function (e) {
+    input.closest('.image-picker').querySelector('img').src = e.target.result;
+  };
+
+  reader.readAsDataURL(input.files[0]);
+});
 
 /***/ }),
 

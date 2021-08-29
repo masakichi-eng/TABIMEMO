@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.articles_app')
 
 @section('title')
     商品出品
 @endsection
 
 @section('content')
-    <div class="container">
+@include('article_nav')
+    <div class="container mt-3">
         <div class="row">
             <div class="col-8 offset-2">
                 @if (session('status'))
@@ -23,7 +24,7 @@
 
                 <form method="POST" action="{{ route('sell') }}" class="p-5" enctype="multipart/form-data">
                     @csrf
-    
+
                     {{-- 商品画像 --}}
                     <div>商品画像</div>
                     <span class="item-image-form image-picker">
@@ -110,7 +111,7 @@
                     </div>
 
                     <div class="form-group mb-0 mt-3">
-                        <button type="submit" class="btn btn-block btn-secondary">
+                        <button type="submit" class="btn btn-block btn-primary">
                             出品する
                         </button>
                     </div>

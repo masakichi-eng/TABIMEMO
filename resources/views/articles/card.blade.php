@@ -1,76 +1,71 @@
-<div class="card mt-3 max-width: 500px;">
-  <div class="card-body d-flex flex-row" style="flex-wrap: wrap;">
+<div class="card mb-5">
+    <div class="card-body d-flex flex-row" style="flex-wrap: wrap;">
+        <div class="col-6">
+        @if (!empty($article->article_image_file_name))
+            <img class="card-img-top" src="/storage/article-images/{{$article->article_image_file_name}}">
+        @else
+            <img src="/images/noimage.jpg">
+        @endif
+        </div>
     <div>
-      @if (!empty($article->article_image_file_name))
-        <img class="card-img-top" src="/storage/article-images/{{$article->article_image_file_name}}" style="object-fit: cover; width: 300px; height: 300px;">
-      @else
-          <img src="/images/noimage.jpg" style="width: 300px; height: 300px;">
-      @endif
-    </div>
-  <div>
-  <div class="card-body d-flex flex-row">
-  <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">
-      @if (!empty($article->user->avatar_file_name))
-          <img src="/storage/avatars/{{$article->user->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
-      @else
-          <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
-      @endif
-  </a>
-  <div class= "ml-2 " >
-    <div class="font-weight-bold ">
-    <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">{{ $article->user->name }}</a></div>
-    <div class="font-weight-lighter">{{ $article->created_at->format('Y/m/d H:i') }}</div>
-  </div>
+    <div class="card-body d-flex flex-row">
+        <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">
+            @if (!empty($article->user->avatar_file_name))
+                <img src="/storage/avatars/{{$article->user->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+            @else
+                <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+            @endif
+        </a>
 
-  @if( Auth::id() === $article->user_id )
-    <!-- dropdown -->
-      <div class="ml-auto card-text ">
-        <div class="dropdown">
-          <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-ellipsis-v"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="{{ route("articles.edit", ['article' => $article]) }}">
-              <i class="fas fa-pen mr-1"></i>記事を更新する
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $article->id }}">
-              <i class="fas fa-trash-alt mr-1"></i>記事を削除する
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- dropdown -->
-
-      <!-- modal -->
-      <div id="modal-delete-{{ $article->id }}" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                <span aria-hidden="true">&times;</span>
-              </button>
+        <div class= "ml-2" >
+            <div class="font-weight-bold ">
+            <a href="{{ route('mypage.show', ['name' => $article->user->name]) }}" class="text-dark">{{ $article->user->name }}</a>
             </div>
-            <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
-              @csrf
-              @method('DELETE')
-              <div class="modal-body">
-                {{ $article->title }}を削除します。よろしいですか？
-              </div>
-              <div class="modal-footer justify-content-between">
-                <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
-                <button type="submit" class="btn btn-danger">削除する</button>
-              </div>
-            </form>
-          </div>
         </div>
-      </div>
-      <!-- modal -->
-    @endif
+
+        @if( Auth::id() === $article->user_id )
+        <!-- dropdown -->
+            <div class="ml-3 d-flex flex-row">
+                <a class="ml-2" href="{{ route("articles.edit", ['article' => $article]) }}">
+                    <i class="fas fa-pen mr-1"></i>更新
+                </a>
+                <a class="ml-2 text-danger" data-toggle="modal" data-target="#modal-delete-{{ $article->id }}">
+                    <i class="fas fa-trash-alt mr-1"></i>削除
+                </a>
+            </div>
+        <!-- dropdown -->
+        <!-- modal -->
+        <div id="modal-delete-{{ $article->id }}" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                    {{ $article->title }}を削除します。よろしいですか？
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                    <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                    <button type="submit" class="btn btn-danger">削除する</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+        @endif
     </div>
 
 
-  <div class="card-body pt-0">
+
+
+
+  <div class="card-body pt-0" style="max-width:500px;">
     <h3 class="h3 card-title">
       <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
         {{ $article->title }}

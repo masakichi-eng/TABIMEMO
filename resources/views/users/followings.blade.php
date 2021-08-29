@@ -3,7 +3,7 @@
 @section('title', $user->name . 'のフォロー中')
 
 @section('content')
-  @include('nav')
+  @include('article_nav')
   <div class="container">
     @include('users.user')
     @include('users.tabs', ['hasArticles' => false, 'hasLikes' => false])

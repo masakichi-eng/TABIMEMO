@@ -12,20 +12,37 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Models\PrimaryCategory;
+use App\Models\Item;
 
 class ProfileController extends Controller
 {
-    
-    
+
+
     public function show(string $name)
     {
         $user = User::where('name', $name)->first();
 
         $articles = $user->articles->sortByDesc('created_at');
 
+        $s_items = $user->soldItems()->orderBy('id', 'DESC')->get();
+
+        $b_items = $user->boughtItems()->orderBy('id', 'DESC')->get();
+
+        $categories = PrimaryCategory::query()
+            ->with([
+                'secondaryCategories' => function ($query) {
+                    $query->orderBy('sort_no');
+                }
+            ])
+            ->orderBy('sort_no')
+            ->get();
+
         return view('users.show', [
             'user' => $user,
             'articles' => $articles,
+            's_items' => $s_items,
+            'b_items' => $b_items,
+            'categories' => $categories,
         ]);
     }
 
@@ -40,7 +57,7 @@ class ProfileController extends Controller
             'followings' => $followings,
         ]);
     }
-    
+
     public function followers(string $name)
     {
         $user = User::where('name', $name)->first();
@@ -64,48 +81,47 @@ class ProfileController extends Controller
             'articles' => $articles,
         ]);
     }
-    
+
     public function showProfileEditForm()
-     {
+    {
         $categories = PrimaryCategory::query()
-             ->with([
-                 'secondaryCategories' => function ($query) {
-                     $query->orderBy('sort_no');
-                 }
-             ])
-             ->orderBy('sort_no')
-             ->get();
+            ->with([
+                'secondaryCategories' => function ($query) {
+                    $query->orderBy('sort_no');
+                }
+            ])
+            ->orderBy('sort_no')
+            ->get();
 
         return view('mypage.profile_edit_form')
-             ->with('user', Auth::user())
-             ->with('categories', $categories);
+            ->with('user', Auth::user())
+            ->with('categories', $categories);
     }
 
-     public function editProfile(EditRequest $request)
-     {
-         $user = Auth::user();
- 
-         $user->name = $request->input('name');
+    public function editProfile(EditRequest $request)
+    {
+        $user = Auth::user();
 
-         if ($request->has('avatar')) {
+        $user->name = $request->input('name');
+
+        if ($request->has('avatar')) {
             $fileName = $this->saveAvatar($request->file('avatar'));
             $user->avatar_file_name = $fileName;
         }
 
 
-         $user->save();
- 
-         return redirect()->back()
-             ->with('status', 'プロフィールを変更しました。');
-     }
+        $user->save();
+
+        return redirect()->back()
+            ->with('status', 'プロフィールを変更しました。');
+    }
 
 
-     public function follow(Request $request, string $name)
+    public function follow(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
 
-        if ($user->id === $request->user()->id)
-        {
+        if ($user->id === $request->user()->id) {
             return abort('404', 'Cannot follow yourself.');
         }
 
@@ -114,13 +130,12 @@ class ProfileController extends Controller
 
         return ['name' => $name];
     }
-    
+
     public function unfollow(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
 
-        if ($user->id === $request->user()->id)
-        {
+        if ($user->id === $request->user()->id) {
             return abort('404', 'Cannot follow yourself.');
         }
 
@@ -129,33 +144,33 @@ class ProfileController extends Controller
         return ['name' => $name];
     }
 
-     /**
-      * アバター画像をリサイズして保存します
-      *
-      * @param UploadedFile $file アップロードされたアバター画像
-      * @return string ファイル名
-      */
-      private function saveAvatar(UploadedFile $file): string
-      {
-          $tempPath = $this->makeTempPath();
-  
-          Image::make($file)->fit(200, 200)->save($tempPath);
-  
-          $filePath = Storage::disk('public')
-              ->putFile('avatars', new File($tempPath));
-  
-          return basename($filePath);
-      }
+    /**
+     * アバター画像をリサイズして保存します
+     *
+     * @param UploadedFile $file アップロードされたアバター画像
+     * @return string ファイル名
+     */
+    private function saveAvatar(UploadedFile $file): string
+    {
+        $tempPath = $this->makeTempPath();
 
-       /**
-      * 一時的なファイルを生成してパスを返します。
-      *
-      * @return string ファイルパス
-      */
-     private function makeTempPath(): string
-     {
-         $tmp_fp = tmpfile();
-         $meta   = stream_get_meta_data($tmp_fp);
-         return $meta["uri"];
-     }
+        Image::make($file)->fit(200, 200)->save($tempPath);
+
+        $filePath = Storage::disk('public')
+            ->putFile('avatars', new File($tempPath));
+
+        return basename($filePath);
+    }
+
+    /**
+     * 一時的なファイルを生成してパスを返します。
+     *
+     * @return string ファイルパス
+     */
+    private function makeTempPath(): string
+    {
+        $tmp_fp = tmpfile();
+        $meta   = stream_get_meta_data($tmp_fp);
+        return $meta["uri"];
+    }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.articles_app')
 
 @section('title')
     商品一覧
@@ -6,13 +6,11 @@
 
 
 @section('content')
-
-
-
-<div class="container">
+@include('item_nav_top')
+<div class="container mt-3">
     <div class="row">
         @foreach ($items as $item)
-            <div class="col-3 mb-3">
+            <div class="col-4 mb-3">
                 <div class="card">
                     <div class="position-relative overflow-hidden">
                         <img class="card-img-top" src="/storage/item-images/{{$item->image_file_name}}">

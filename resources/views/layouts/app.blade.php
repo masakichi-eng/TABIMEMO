@@ -20,12 +20,12 @@
     <body>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/items/top') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     Tabimemo
                     <!-- <img src="/images/名前.png" style="height: 39px;" alt="Tabimemo"> -->
                 </a>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <form class="form-inline" method="GET" action="{{ route('top') }}">
                             <div class="input-group">
@@ -35,7 +35,7 @@
                                         @foreach ($categories as $category)
                                             <option value="primary:{{$category->id}}" class="font-weight-bold">{{$category->name}}</option>
                                             @foreach ($category->secondaryCategories as $secondary)
-                                                <option value="secondary:{{$secondary->id}}">　{{$secondary->name}}</option>
+                                                <option value="secondary:{{$secondary->id}}"> {{$secondary->name}}</option>
                                             @endforeach
                                         @endforeach
                                     </select>
@@ -105,13 +105,13 @@
                                         <a class="dropdown-item" href="{{ route('mypage.edit-profile') }}">
                                             <i class="far fa-address-card text-left" style="width: 30px"></i>プロフィール編集
                                         </a>
-            
+
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                             <i class="fas fa-sign-out-alt text-left" style="width: 30px"></i>ログアウト
                                         </a>
-            
+
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>

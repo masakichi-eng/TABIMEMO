@@ -14,10 +14,37 @@ import ArticleTagsInput from './components/ArticleTagsInput'
 import FollowButton from './components/FollowButton'
 
 const app = new Vue({
-  el: '#app',
-  components: {
-    ArticleLike,
-    ArticleTagsInput,
-    FollowButton,
-  }
+    el: '#app',
+    components: {
+        ArticleLike,
+        ArticleTagsInput,
+        FollowButton,
+    }
 })
+
+$(function () {
+    /* SP menu */
+    function toggleNav() {
+        var body = document.body;
+        var hamburger = document.getElementById('nav_btn');
+        var blackBg = document.getElementById('nav_bg');
+        hamburger.addEventListener('click', function () {
+            body.classList.add('nav_open'); //メニュークリックでnav-openというクラスがbodyに付与
+        });
+        blackBg.addEventListener('click', function () {
+            body.classList.remove('nav_open'); //もう一度クリックで解除
+        });
+    }
+    toggleNav();
+});
+
+
+document.querySelector('.image-picker input')
+    .addEventListener('change', (e) => {
+        const input = e.target;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            input.closest('.image-picker').querySelector('img').src = e.target.result
+        };
+        reader.readAsDataURL(input.files[0]);
+    });
