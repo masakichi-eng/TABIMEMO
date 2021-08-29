@@ -1,11 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.articles_app')
+
 
 @section('title')
     {{$item->name}} | 商品詳細
 @endsection
 
 @section('content')
-<div class="container">
+@include('article_nav')
+<div class="container mt-3">
     <div class="row">
         <div class="col-8 offset-2 bg-white">
             <div class="row mt-3">

@@ -1,12 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.articles_app')
+
 
 @section('title')
     {{$item->name}} | 商品購入
 @endsection
 
 @section('content')
+@include('article_nav')
 <script src="https://js.pay.jp/v2/pay.js"></script>
-<div class="container">
+<div class="container mt-3">
     <div class="row">
         <div class="col-8 offset-2 bg-white">
             <div class="row mt-3">
@@ -56,9 +58,9 @@
 </div>
   <script>
       var payjp = Payjp('{{config("payjp.public_key")}}')
-  
+
       var elements = payjp.elements()
-  
+
       var numberElement = elements.create('cardNumber')
       var expiryElement = elements.create('cardExpiry')
       var cvcElement = elements.create('cardCvc')
@@ -69,14 +71,14 @@
       function onSubmit(event) {
           const msgDom = document.querySelector('.card-form-alert');
           msgDom.style.display = "none";
-  
+
           payjp.createToken(numberElement).then(function(r) {
               if (r.error) {
                   msgDom.innerText = r.error.message;
                   msgDom.style.display = "block";
                   return;
               }
-  
+
               document.querySelector('#card-token').value = r.id;
               document.querySelector('#buy-form').submit();
           })
