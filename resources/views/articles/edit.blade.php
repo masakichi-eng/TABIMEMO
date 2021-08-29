@@ -2,7 +2,7 @@
 
 @section('title', '記事更新')
 
-@include('nav')
+@include('article_nav')
 
 @section('content')
   <div class="container">

@@ -3,7 +3,7 @@
 @section('title', $user->name)
 
 @section('content')
-  @include('nav')
+  @include('article_nav')
   <div class="container">
   @include('users.user')
   @include('users.tabs', ['hasArticles' => true, 'hasLikes' => false])

@@ -2,9 +2,10 @@
 
 @section('title', '記事投稿')
 
-@include('nav')
+
 
 @section('content')
+@include('article_nav')
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -22,6 +23,4 @@
       </div>
     </div>
   </div>
-
-
 @endsection

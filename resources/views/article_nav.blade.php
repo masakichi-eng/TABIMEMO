@@ -5,24 +5,6 @@
       </h3>
       <nav class="drawer-nav header-nav" >
         <ul id="navi" class="drawer-menu header-nav-list">
-            <li class="header-nav-item">
-            <a class="header-nav-item-link" href="#concept">Concept</a>
-            </li>
-            <li class="header-nav-item">
-            <a class="header-nav-item-link" href="#article">Articles</a>
-            </li>
-            <li class="header-nav-item">
-            <a class="header-nav-item-link" href="#shopping">Shopping</a>
-            </li>
-
-            <li class="header-nav-item">
-            <a class="header-nav-item-link" href="{{ route('articles.index') }}">記事一覧</a>
-            </li>
-
-            <li class="header-nav-item">
-                <a class="header-nav-item-link" href="{{ route('top') }}">商品一覧</a>
-            </li>
-
             @guest
             <li class="header-nav-item">
             <a class="header-nav-item-link" href="{{ route('register') }}">ユーザー登録</a>
@@ -34,6 +16,12 @@
             <a class="header-nav-item-link" href="{{ route('login') }}">ログイン</a>
             </li>
             @endguest
+
+            @auth
+            <li class="header-nav-item">
+            <a class="header-nav-item-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
+            </li>
+            @endauth
 
             @auth
             <li class="header-nav-item">

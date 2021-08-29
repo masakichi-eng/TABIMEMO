@@ -27,10 +27,10 @@
         <!-- dropdown -->
             <div class="ml-3 d-flex flex-row">
                 <a class="ml-2" href="{{ route("articles.edit", ['article' => $article]) }}">
-                    <i class="fas fa-pen mr-1"></i>記事を更新する
+                    <i class="fas fa-pen mr-1"></i>更新
                 </a>
                 <a class="ml-2 text-danger" data-toggle="modal" data-target="#modal-delete-{{ $article->id }}">
-                    <i class="fas fa-trash-alt mr-1"></i>記事を削除する
+                    <i class="fas fa-trash-alt mr-1"></i>削除
                 </a>
             </div>
         <!-- dropdown -->

@@ -2219,6 +2219,16 @@ $(function () {
 
   toggleNav();
 });
+document.querySelector('.image-picker input').addEventListener('change', function (e) {
+  var input = e.target;
+  var reader = new FileReader();
+
+  reader.onload = function (e) {
+    input.closest('.image-picker').querySelector('img').src = e.target.result;
+  };
+
+  reader.readAsDataURL(input.files[0]);
+});
 
 /***/ }),
 

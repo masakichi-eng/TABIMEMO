@@ -40,8 +40,11 @@
             @include('articles.card')
             @endforeach
         </div>
-        <div class="article-footer">
-            <a href="#" class="util-link">MORE</a>
+        <div class="item-footer">
+            <button class="util-link" type="button"
+            onclick="location.href='{{ route('articles.index') }}'">
+            MORE
+            </button>
         </div>
     </div>
   </section>
@@ -93,8 +96,13 @@
         </div>
 
         <div class="item-footer">
-            <a href="#" class="util-link">MORE</a>
+            <button class="util-link" type="button"
+            onclick="location.href='{{ route('top') }}'">
+            MORE
+            </button>
         </div>
+
+
     </div>
   </section>
 
