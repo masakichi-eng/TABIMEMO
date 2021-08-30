@@ -2,8 +2,6 @@
 
 @section('title', '記事投稿')
 
-
-
 @section('content')
 @include('article_nav')
   <div class="container">

@@ -3,7 +3,7 @@
 @section('title', $tag->hashtag)
 
 @section('content')
-  @include('nav')
+  @include('article_nav')
   <div class="container">
     <div class="card mt-3">
       <div class="card-body">
