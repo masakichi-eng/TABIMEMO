@@ -61,10 +61,6 @@
             @endif
         </div>
 
-
-
-
-
         <div class="card-body pt-0">
             <h3 class="h3 card-title">
             <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">

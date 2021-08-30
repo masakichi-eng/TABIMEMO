@@ -12,7 +12,6 @@
   </article-tags-input>
 </div>
 
-
 {{-- 画像 --}}
 <div>投稿画像 </div>
 <div style=color:red;>(注)jpeg,png形式 サイズ:2MB未満</div>
@@ -27,7 +26,6 @@
         <strong>{{ $message }}</strong>
     </div>
 @enderror
-
 
 <div class="form-group">
   <label></label>
