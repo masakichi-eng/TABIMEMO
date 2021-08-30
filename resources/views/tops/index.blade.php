@@ -52,22 +52,22 @@
   <section id="shopping" class="shopping inner section">
     <h2 class="util-title">Shopping</h2>
     <div class="shopping-inner">
+        <div class="shopping-picture" ><img src="/images/shopping.jpg" alt="picture" style="width:100%;"></div>
       <div class="shopping-message">
         <p class="shopping-message-title">旅先で見つけたオススメを<br>商品として出品もできます。
         </p>
         <p class="shopping-message-text">旅先で購入したお土産などを出品したり、購入することもできます。地域限定の品物などを手に入れるチャンスです。</p>
       </div>
-      <div class="shopping-picture" ><img src="/images/shopping.jpg" alt="picture" style="width:100%;"></div>
     </div>
   </section>
 
   <section id="item" class="item inner section">
     <h2 class="util-title">Items</h2>
     <div class="item-inner">
-        <div class="container">
-            <div class="row mx-auto">
+        <div class="container" style="text-align: center;">
+            <div class="items-section">
                 @foreach ($items as $item)
-                    <div class="col-4 mb-3">
+                    <div class="item-box">
                         <div class="card">
                             <div class="position-relative overflow-hidden">
                                 <img class="card-img-top" src="/storage/item-images/{{$item->image_file_name}}">
@@ -108,7 +108,7 @@
 
 <footer class="footer">
     <div class="appname">
-        <h3>Tabimemo</h3>
+        <a href="#"><h3>Tabimemo</h3></a>
     </div>
     <ul class="footer-nav-list">
       <li class="footer-nav-item">

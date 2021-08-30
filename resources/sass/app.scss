@@ -287,6 +287,30 @@ header {
     margin-top: 18px;
   }
 
+
+  @media screen and (max-width: 700px) {
+
+    .top-message {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #fff;
+        padding: 15px 15px 15px 15px;
+      }
+
+      .top-message-title {
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .top-message-text {
+        font-size: 10px;
+        margin-top: 18px;
+        margin-bottom: 0;
+      }
+  }
+
 /* concept
 ------------------------------------------------*/
 
@@ -303,6 +327,7 @@ header {
   .concept-message {
     flex: 0 1 50%;
     margin-left: 6.6667%;
+    margin-top: 20px;
   }
 
   .concept-message-title {
@@ -312,6 +337,14 @@ header {
 
   .concept-message-text {
     margin-top: 36px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .concept-inner {
+        margin-top: 64px;
+        display: block;
+        align-items: center;
+      }
   }
 
 /* article
@@ -326,6 +359,37 @@ header {
     text-align:center;
     margin: 20px 0;
 }
+
+.article-picture {
+    display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+    .article-picture {
+        display: block;
+        align-items: center;
+      }
+  }
+
+.article-picture-size {
+    width: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+    .article-picture-size {
+        width: 100%;
+      }
+  }
+
+.article-body {
+    width: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+    .article-body {
+        width: 100%;
+      }
+  }
 
 /* shopping
 ------------------------------------------------*/
@@ -342,7 +406,8 @@ header {
 
   .shopping-message {
     flex: 0 1 50%;
-    margin-right: 6.6667%;
+    margin-left: 6.6667%;
+    margin-top: 20px;
   }
 
   .shopping-message-title {
@@ -352,6 +417,14 @@ header {
 
   .shopping-message-text {
     margin-top: 36px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .shopping-inner {
+        margin-top: 64px;
+        display: block;
+        align-items: center;
+      }
   }
 
 /* item
@@ -365,4 +438,28 @@ header {
 .item-footer {
     text-align:center;
     margin: 20px 0;
+}
+
+.items-section {
+    display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+    .items-section {
+        display: block;
+        align-items: center;
+      }
+  }
+
+
+.item-box {
+    margin: 15px 15px 30px 15px;
+    width:33%;
+}
+
+@media screen and (max-width: 1000px) {
+    .item-box {
+        margin: 15px 15px 30px 15px;
+        width:100%;
+    }
 }
