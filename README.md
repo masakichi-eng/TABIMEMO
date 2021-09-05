@@ -1,7 +1,7 @@
 # TABIMEMO
 
 ## アプリ概要
-<img src="/README_images/tabimemo_img.jpeg">
+<img src="/README_images/tabimemo_image.jpeg">
 旅の思い出共有アプリです。
 旅先でとった写真や思い出を記事にして投稿できたり、
 お土産などを売り買いすることもできます。
@@ -17,8 +17,8 @@ https://parking-search.com/
   - Javascript
   - tailwind
 - バックエンド
-  - Ruby: 2.6.6
-  - Rails: 6.1.0
+  - PHP 7.3.29
+  - Laravel 6.20.30
 - インフラ・開発環境
   - PostgreSQL
   - Nginx
