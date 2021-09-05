@@ -8,6 +8,7 @@
 @section('content')
 @include('item_nav_top')
 <div class="container" style="text-align: center;">
+    @if (count($items) > 0)
     <div class="items-section">
         @foreach ($items as $item)
             <div class="item-box">
@@ -33,6 +34,11 @@
             </div>
         @endforeach
     </div>
+    @else
+
+    <div style="margin-top: 50px"><h1>検索にヒットする商品はありませんでした</h1></div>
+
+    @endif
      <div class="d-flex justify-content-center">
          {{ $items->links() }}
      </div>
