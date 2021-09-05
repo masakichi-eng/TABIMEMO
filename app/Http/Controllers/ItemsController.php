@@ -11,6 +11,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Payjp\Charge;
+use Request as GetRequest;
 
 class ItemsController extends Controller
 {
@@ -60,10 +61,16 @@ class ItemsController extends Controller
             ->orderBy('sort_no')
             ->get();
 
+        $defaults = [
+            'category' => GetRequest::input('category', ''),
+            'keyword'  => GetRequest::input('keyword', ''),
+        ];
+
         return view('items.items')
             ->with('items', $items)
             ->with('user', Auth::user())
-            ->with('categories', $categories);
+            ->with('categories', $categories)
+            ->with('defaults', $defaults);
     }
 
     private function escape(string $value)
