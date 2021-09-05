@@ -1,12 +1,12 @@
 # TABIMEMO
 
 ## アプリ概要
-<img src="/README_images/tabimemo_image.jpeg">
+<img src="/README_images/tabimemo_image.jpg">
 旅の思い出共有アプリです。
 旅先でとった写真や思い出を記事にして投稿できたり、
 お土産などを売り買いすることもできます。
 
-<img src="/README_images/tabimemo_top.jpeg">
+<img src="/README_images/tabimemo_top.jpg">
 
 ## URL 
 https://parking-search.com/
