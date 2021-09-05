@@ -1,78 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# TABIMEMO
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## アプリ概要
+<img src="/README_images/tabimemo_img.jpeg">
+旅の思い出共有アプリです。
+旅先でとった写真や思い出を記事にして投稿できたり、
+お土産などを売り買いすることもできます。
 
-## About Laravel
+<img src="/README_images/tabimemo_top.jpeg">
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## URL 
+https://parking-search.com/
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 使用技術
+- フロントエンド
+  - HTML/CSS
+  - Javascript
+  - tailwind
+- バックエンド
+  - Ruby: 2.6.6
+  - Rails: 6.1.0
+- インフラ・開発環境
+  - PostgreSQL
+  - Nginx
+  - Docker/docker-compose/laradock
+  - AWS(EC2・RDS・S3・ACM・VPC・Route53・ALB)
+  - CircleCI（CI/CD）
+- テスト・静的コード解析
+  - PHPUnit
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 機能一覧
+- ユーザーに関する機能
+  - ユーザー登録、ログイン、ログアウト、
+  - プロフィール画像登録
+  - フォロー機能
+  - マイページ機能(過去の投稿、いいねした投稿、出品した商品・購入した商品の確認)
+- 投稿に関する機能
+  - 投稿一覧表示、投稿機能、投稿詳細表示、投稿編集、投稿削除機能
+  - タグ機能
+  - 画像投稿機能
+  - 画像プレビュー機能
+  - 投稿に対するいいね機能
+- お買い物機能
+  - 商品一覧表示
+  - 画像投稿機能
+  - 出品機能
+  - Pay.jpによる決済機能
 
-## Learning Laravel
+## インフラ設計図
+<img src= '/README_images/infra.png' >
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 今後の開発予定
+- 旅好きが繋がれる様にマッチング機能を実装
+- ユーザー同士の交流が深まる様にトークルーム機能実装
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 開発背景
+私は趣味で旅行をするのですが、思い出を共有する際にいいアプリがなく悩んでいました
 
-## Laravel Sponsors
+- Twitterやインスタグラムでは旅以外の情報で埋もれてしまう
+- 旅好きと繋がって情報共有できるサイトが少ない
+- お土産などを売り買いしたい
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+以上の点からもっと使いやすい旅行の思い出共有サイトを作ろうと思い立ちました。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+## 工夫した点
+- スマホでの使用を意識したレスポンシブデザイン
+- 検索オプションを追加してカテゴリやキーワード検索できる様にした。また値も保持できる様にした
+- テストとデプロイを効率化するために、CircleCIを用いてCI/CDパイプラインの構築を行った
+- ページネーションを実装して利便性の向上
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 現時点での問題点
+- 買った商品をどうやって配送するか(DM機能をつけて直接やり取りするのが最善か)
