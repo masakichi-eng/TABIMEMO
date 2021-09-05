@@ -9,7 +9,7 @@
 <img src="/README_images/tabimemo_top.jpg">
 
 ## URL 
-https://parking-search.com/
+https://tabimemo.jp
 
 ## 使用技術
 - フロントエンド
