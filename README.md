@@ -15,7 +15,7 @@ https://parking-search.com/
 - フロントエンド
   - HTML/CSS
   - Javascript
-  - tailwind
+  - Vue.js
 - バックエンド
   - PHP 7.3.29
   - Laravel 6.20.30
