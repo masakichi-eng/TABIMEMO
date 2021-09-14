@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.articles_app')
 
 @section('title')
     プロフィール編集
 @endsection
 
 @section('content')
-    <div id="profile-edit-form" class="container">
+@include('article_nav')
+    <div id="profile-edit-form" class="container mt-5">
         <div class="row">
             <div class="col-8 offset-2">
                 @if (session('status'))
