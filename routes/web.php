@@ -13,6 +13,7 @@
 
 Route::get('/items/top', 'ItemsController@showItems')->name('top');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/matching', 'MatchingController@index')->name('matching');
 
 Auth::routes();
 
