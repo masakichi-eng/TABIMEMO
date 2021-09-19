@@ -12,6 +12,7 @@
 */
 
 Route::get('/items/top', 'ItemsController@showItems')->name('top');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

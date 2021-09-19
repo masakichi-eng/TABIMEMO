@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class)->create(
+        DB::table('users')->insert([
             ['name' => 'ジョブズ',
             'email' => 'test1@example.com',
             'email_verified_at' => now(),
@@ -46,6 +46,6 @@ class UserSeeder extends Seeder
             'self_introduction' => 'セイバーです',
             'avatar_file_name' => 'sample004.jpg',
             ],
-        );
+        ]);
     }
 }

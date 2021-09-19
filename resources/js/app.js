@@ -12,6 +12,11 @@ import Vue from 'vue'
 import ArticleLike from './components/ArticleLike'
 import ArticleTagsInput from './components/ArticleTagsInput'
 import FollowButton from './components/FollowButton'
+require('./jquery.jTinder');
+require('./jquery.transform2d');
+require('./jTinder');
+require('./toggleNav');
+require('./image-picker');
 
 const app = new Vue({
     el: '#app',
@@ -21,30 +26,3 @@ const app = new Vue({
         FollowButton,
     }
 })
-
-$(function () {
-    /* SP menu */
-    function toggleNav() {
-        var body = document.body;
-        var hamburger = document.getElementById('nav_btn');
-        var blackBg = document.getElementById('nav_bg');
-        hamburger.addEventListener('click', function () {
-            body.classList.add('nav_open'); //メニュークリックでnav-openというクラスがbodyに付与
-        });
-        blackBg.addEventListener('click', function () {
-            body.classList.remove('nav_open'); //もう一度クリックで解除
-        });
-    }
-    toggleNav();
-});
-
-
-document.querySelector('.image-picker input')
-    .addEventListener('change', (e) => {
-        const input = e.target;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            input.closest('.image-picker').querySelector('img').src = e.target.result
-        };
-        reader.readAsDataURL(input.files[0]);
-    });

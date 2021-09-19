@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Models\PrimaryCategory;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -24,15 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $categories = PrimaryCategory::query()
-             ->with([
-                 'secondaryCategories' => function ($query) {
-                     $query->orderBy('sort_no');
-                 }
-             ])
-             ->orderBy('sort_no')
-             ->get();
-        return view('home')->with('user', $user)->with('categories', $categories);
+        $users = User::all();
+        return view('home', compact('users'));
     }
 }
