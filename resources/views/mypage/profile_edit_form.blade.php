@@ -48,6 +48,26 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label>メールアドレス</label>
+                        <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+                    </div>
+                    <div class="form-group">
+                        <div><label>性別</label></div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="sex" value="0" type="radio" id="inlineRadio1" @if($user->sex === 0) checked @endif>
+                          <label class="form-check-label" for="inlineRadio1">男</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="sex" value="1" type="radio" id="inlineRadio2" @if($user->sex === 1) checked @endif>
+                          <label class="form-check-label" for="inlineRadio2">女</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>自己紹介文</label>
+                        <textarea class="form-control" name="self_introduction" rows="10">{{$user->self_introduction}}</textarea>
+                    </div>
+
                     <div class="form-group mb-0 mt-3">
                         <button type="submit" class="btn btn-block btn-secondary">
                             保存

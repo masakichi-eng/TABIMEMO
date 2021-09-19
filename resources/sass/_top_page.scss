@@ -1,0 +1,453 @@
+/*==============================================
+# common - 全体に共通するスタイル
+==============================================*/
+
+
+  body {
+    font-size: 16px;
+    color: $font-color;
+    font-family: "ヒラギノ明朝 ProN", serif;
+    line-height: 1.6875;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: content-box;
+  }
+
+  .appname {
+      text-align: center;
+  }
+
+
+/* header
+------------------------------------------------*/
+
+header {
+    background: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-logo {
+    width: 120px;
+  }
+
+  .header-nav {
+    margin-left: auto;
+  }
+
+  .header-nav-list {
+    display: flex;
+    margin-bottom: 0;
+  }
+
+  .header-nav-item {
+      margin: 0 20px;
+  }
+
+  .header-nav-item-btn {
+      margin-left: 15px;
+  }
+
+  .header-nav-item-link {
+    display: block;
+    height: 70px;
+    line-height: 70px;
+    letter-spacing: 0.1em;
+  }
+
+/* footer
+------------------------------------------------*/
+
+.footer {
+    background: #f7f7f7;
+    padding: 42px 40px 12px;
+  }
+
+  .footer-logo {
+    width: 120px;
+    margin: 0 auto;
+  }
+
+  .footer-nav-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .footer-nav-item {
+      margin-left: 30px;
+  }
+
+  .footer-nav-item-link {
+    font-size: 12px;
+    color: $font-color;
+    display: block;
+    padding: 1em 0;
+  }
+
+  .footer-sns-list {
+    text-align: center;
+  }
+
+  .footer-sns-item {
+    display: inline-block;
+  }
+
+  .footer-sns-item-link {
+    color: $primary-color;
+    font-size: 24px;
+    display: block;
+    padding: 0.1em 0.5em;
+  }
+
+  .footer-copyright {
+    color: #888;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /*SPメニュー*/
+  @media screen and (max-width: 1000px) {
+    /* bager menu */
+    #header #navi {
+      transition: all 0.6s;
+      overflow-y: auto;
+      width: 300px;
+      height: 100vh;
+      z-index: 200;
+      top: 0;
+      right: -320px;
+      background-color: #fff;
+      position: fixed;
+      flex-direction: column;
+      align-items: baseline;
+    }
+    #header #navi li {
+      padding: 10px;
+    }
+    #header .nav_btn {
+      width: 44px;
+      height: 44px;
+      z-index: 300;
+      top: 7px;
+      right: 7px;
+      cursor: pointer;
+      position: absolute;
+    }
+    .hamburger_line {
+      transition: all 0.6s;
+      width: 34px;
+      height: 2px;
+      left: 5px;
+      background-color: #000;
+      position: absolute;
+    }
+    .hamburger_line1 {
+      top: 10px;
+    }
+    .hamburger_line2 {
+      top: 21px;
+    }
+    .hamburger_line3 {
+      top: 32px;
+    }
+    .nav_bg {
+      opacity: 0;
+      transition: all 0.6s;
+      width: 100vw;
+      height: 100vh;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+      background-color: #000;
+      cursor: pointer;
+      position: fixed;
+    }
+    /* 表示された時用のCSS */
+    .nav_open #header #navi {
+      right: 0;
+    }
+    .nav_open .nav_bg {
+      opacity: 0.8;
+      visibility: visible;
+    }
+    .nav_open .hamburger_line1 {
+        display: none;
+    }
+    .nav_open .hamburger_line2 {
+        display: none;
+    }
+    .nav_open .hamburger_line3 {
+        display: none;
+    }
+  }
+
+/*==============================================
+# main
+==============================================*/
+
+.main {
+    padding-top: 70px;
+  }
+
+  .section {
+    margin-top: 160px;
+  }
+
+  /* util
+  ------------------------------------------------*/
+
+  .util-title {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 60px;
+      background: $primary-color;
+      margin: 16px auto 0;
+    }
+  }
+
+  .util-link {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: $primary-color;
+    border: solid 1px $primary-color;
+    background: #fff;
+    display: inline-block;
+    padding: 10px 54px;
+    transition: background-color 0.4s, color 0.4s;
+
+    &.-active {
+      background: $primary-color;
+      color: #fff;
+    }
+  }
+
+/* top
+------------------------------------------------*/
+
+.top {
+    position: relative;
+  }
+
+  .top-picture {
+    padding-top: 55%;
+    background: url(/images/top.jpg) top right / 100% no-repeat;
+  }
+
+  .top-message {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    padding: 52px 40px 52px 40px;
+  }
+
+  .top-message-title {
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .top-message-text {
+    margin-top: 18px;
+  }
+
+
+  @media screen and (max-width: 700px) {
+
+    .top-message {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #fff;
+        padding: 15px 15px 15px 15px;
+      }
+
+      .top-message-title {
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .top-message-text {
+        font-size: 10px;
+        margin-top: 18px;
+        margin-bottom: 0;
+      }
+  }
+
+/* concept
+------------------------------------------------*/
+
+.concept-inner {
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+  }
+
+  .concept-picture {
+    flex: 0 0 50%;
+  }
+
+  .concept-message {
+    flex: 0 1 50%;
+    margin-left: 6.6667%;
+    margin-top: 20px;
+  }
+
+  .concept-message-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .concept-message-text {
+    margin-top: 36px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .concept-inner {
+        margin-top: 64px;
+        display: block;
+        align-items: center;
+      }
+  }
+
+/* article
+------------------------------------------------*/
+
+.article-inner {
+    margin-top: 64px;
+    align-items: center;
+  }
+
+.article-footer {
+    text-align:center;
+    margin: 20px 0;
+}
+
+.article-picture {
+    display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+    .article-picture {
+        display: block;
+        align-items: center;
+      }
+  }
+
+.article-picture-size {
+    width: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+    .article-picture-size {
+        width: 100%;
+      }
+  }
+
+.article-body {
+    width: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+    .article-body {
+        width: 100%;
+      }
+  }
+
+/* shopping
+------------------------------------------------*/
+
+  .shopping-inner {
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+  }
+
+  .shopping-picture {
+    flex: 0 0 50%;
+  }
+
+  .shopping-message {
+    flex: 0 1 50%;
+    margin-left: 6.6667%;
+    margin-top: 20px;
+  }
+
+  .shopping-message-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .shopping-message-text {
+    margin-top: 36px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .shopping-inner {
+        margin-top: 64px;
+        display: block;
+        align-items: center;
+      }
+  }
+
+/* item
+------------------------------------------------*/
+
+.item-inner {
+    margin-top: 64px;
+    align-items: center;
+  }
+
+.item-footer {
+    text-align:center;
+    margin: 20px 0;
+}
+
+.items-section {
+    display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+    .items-section {
+        display: block;
+        align-items: center;
+      }
+  }
+
+
+.item-box {
+    margin: 15px 15px 30px 15px;
+    width:33%;
+}
+
+@media screen and (max-width: 1000px) {
+    .item-box {
+        margin: 15px 15px 30px 15px;
+        width:100%;
+    }
+}
