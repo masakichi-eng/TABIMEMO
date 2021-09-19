@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,9 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('home', compact('users'));
+        $userCount = $users->count();
+        $from_user_id = Auth::id();
+
+        return view('home', compact('users', 'userCount', 'from_user_id'));
     }
 }
