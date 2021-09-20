@@ -101,8 +101,25 @@
             MORE
             </button>
         </div>
+    </div>
+  </section>
 
+  <section id="matching" class="matching inner section">
+    <h2 class="util-title">Matching</h2>
+    <div class="matching-inner">
+        <div class="matching-picture" ><img src="/images/matching.jpg" alt="picture" style="width:100%;"></div>
+      <div class="matching-message">
+        <p class="matching-message-title">気の合う仲間と<br>マッチングして旅行に行こう。
+        </p>
+        <p class="matching-message-text">旅好きの仲間とマッチングして旅トークしよう！一緒に旅行に行く仲間になれるかも</p>
+      </div>
+    </div>
 
+    <div class="matching-footer">
+        <button class="util-link" type="button"
+        onclick="location.href='{{ route('home') }}'">
+        MORE
+        </button>
     </div>
   </section>
 

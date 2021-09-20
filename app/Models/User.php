@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'self_introduction', 'sex', 'avatar_file_name',
     ];
 
     /**
@@ -85,5 +85,25 @@ class User extends Authenticatable
     public function articles(): HasMany
     {
         return $this->hasMany('App\Article');
+    }
+
+    public function toUserId()
+    {
+        return $this->hasMany('App\Reaction', 'to_user_id', 'id');
+    }
+
+    public function fromUserId()
+    {
+        return $this->hasMany('App\Reaction', 'from_user_id', 'id');
+    }
+
+    public function chatMessages()
+    {
+        return $this->hasMany('App\ChatMessage');
+    }
+
+    public function chatRoomUsers()
+    {
+        return $this->hasMany('App\ChatRoomUsers');
     }
 }

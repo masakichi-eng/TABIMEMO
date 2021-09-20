@@ -103,12 +103,14 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $user->name = $request->input('name');
+        $user->email = $request->email;
+        $user->sex = $request->sex;
+        $user->self_introduction = $request->self_introduction;
 
         if ($request->has('avatar')) {
             $fileName = $this->saveAvatar($request->file('avatar'));
             $user->avatar_file_name = $fileName;
         }
-
 
         $user->save();
 

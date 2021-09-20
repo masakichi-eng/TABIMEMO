@@ -33,6 +33,7 @@
     </a>
     @endif
   </div>
+  <div class='card-body'>{{ $user -> self_introduction }}</div>
   <div class="card-body">
     <div class="card-text">
       <a href="{{ route('mypage.followings', ['name' => $user->name]) }}" class="text-muted">
