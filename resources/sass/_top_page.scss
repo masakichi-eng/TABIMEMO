@@ -207,7 +207,7 @@ header {
   }
 
   .section {
-    margin-top: 160px;
+    margin-top: 80px;
   }
 
   /* util
@@ -451,3 +451,44 @@ header {
         width:100%;
     }
 }
+
+/* matching
+------------------------------------------------*/
+
+.matching-inner {
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+  }
+
+  .matching-footer {
+    text-align:center;
+    margin: 50px 0;
+}
+
+  .matching-picture {
+    flex: 0 0 50%;
+  }
+
+  .matching-message {
+    flex: 0 1 50%;
+    margin-left: 6.6667%;
+    margin-top: 20px;
+  }
+
+  .matching-message-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .matching-message-text {
+    margin-top: 36px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .matching-inner {
+        margin-top: 64px;
+        display: block;
+        align-items: center;
+      }
+  }

@@ -1,12 +1,13 @@
-@extends('layouts.matching')
+@extends('layouts.articles_app')
 
 @section('content')
-
+@include('article_nav')
 <div class="matchingPage">
-  <header class="header">
+  {{-- <header class="header">
     <i class="fas fa-comments fa-3x"></i>
     <div class="header_logo"><a href="{{route('home')}}"><img src="/storage/images/techpit-match-icon.png"></a></div>
-  </header>
+  </header> --}}
+
   <div class="container">
     <div class="mt-5">
       <div class="matchingNum">{{ $match_users_count }}人とマッチングしています</div>
@@ -17,11 +18,11 @@
           <div class="matchingPerson_img"><img src="/storage/avatars/{{ $user->avatar_file_name}}"></div>
             <div class="matchingPerson_name">{{ $user->name }}</div>
 
-            {{-- <form method="POST" action="{{ route('chat.show') }}">
+            <form method="POST" action="{{ route('chat.show') }}">
             @csrf
               <input name="user_id" type="hidden" value="{{$user->id}}">
               <button type="submit" class="chatForm_btn">チャットを開く</button>
-            </form> --}}
+            </form>
 
           </div>
         @endforeach

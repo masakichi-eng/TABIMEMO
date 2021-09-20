@@ -8,19 +8,13 @@
             <li class="header-nav-item">
             <a class="header-nav-item-link" href="#concept">Concept</a>
             </li>
+
             <li class="header-nav-item">
-            <a class="header-nav-item-link" href="#article">Articles</a>
-            </li>
-            <li class="header-nav-item">
-            <a class="header-nav-item-link" href="#shopping">Shopping</a>
+            <a class="header-nav-item-link" href="{{ route('articles.index') }}">Articles</a>
             </li>
 
             <li class="header-nav-item">
-            <a class="header-nav-item-link" href="{{ route('articles.index') }}">記事一覧</a>
-            </li>
-
-            <li class="header-nav-item">
-                <a class="header-nav-item-link" href="{{ route('top') }}">商品一覧</a>
+                <a class="header-nav-item-link" href="{{ route('top') }}">Shopping</a>
             </li>
 
             @guest
@@ -37,7 +31,13 @@
 
             @auth
             <li class="header-nav-item">
-            <a class="header-nav-item-link">
+                <a class="header-nav-item-link" href="{{ route('home') }}">Matching</a>
+            </li>
+
+            <li class="header-nav-item">
+                <a class="header-nav-item-link" href="{{ route('matching') }}">Talk</a>
+            </li>
+            <a class="header-nav-item-link ml-4">
                 @if (!empty(Auth::user()->avatar_file_name))
                     <img src="/storage/avatars/{{Auth::user()->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
                 @else
