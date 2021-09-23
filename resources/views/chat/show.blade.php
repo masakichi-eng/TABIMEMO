@@ -29,10 +29,13 @@
     @endforeach
     </div>
   </div>
-  <form class="messageInputForm">
-    <div class='container'>
-      <input type="text" data-behavior="chat_message" class="messageInputForm_input" placeholder="メッセージを入力...">
+  <form class="messageInputForm d-flex">
+    <div class='container col-10'>
+      <input type="text" id="chat_message" data-behavior="chat_message" class="messageInputForm_input" placeholder="メッセージを入力...">
     </div>
+    <button type="button" class="messageInputForm_input col-2 btn btn-primary" data-behavior="chat_message">
+        送信
+    </button>
   </form>
 </div>
 

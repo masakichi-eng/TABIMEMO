@@ -2301,6 +2301,20 @@ $(document).ready(function () {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
+  $('.messageInputForm_input').on('click', function (event) {
+    event.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '/chat/chat',
+      data: {
+        chat_room_id: chat_room_id,
+        user_id: user_id,
+        message: $('.messageInputForm_input').val()
+      }
+    }).done(function (data) {
+      $('#chat_message').val('');
+    });
+  });
   $('.messageInputForm_input').keypress(function (event) {
     if (event.which === 13) {
       event.preventDefault();
