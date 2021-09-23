@@ -31,11 +31,11 @@
   </div>
   <form class="messageInputForm d-flex">
     <div class='container col-10'>
-      <input type="text" id="chat_message" data-behavior="chat_message" class="messageInputForm_input" placeholder="メッセージを入力...">
+      <input type="text" data-behavior="chat_message" class="messageInputForm_input" placeholder="メッセージを入力...">
     </div>
-    <button type="button" class="messageInputForm_input col-2 btn btn-primary" data-behavior="chat_message">
+    {{-- <button type="button" id="chat_message" class="col-2 btn btn-primary" data-behavior="chat_message">
         送信
-    </button>
+    </button> --}}
   </form>
 </div>
 

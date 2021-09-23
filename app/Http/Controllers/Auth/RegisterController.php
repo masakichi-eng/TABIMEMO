@@ -67,7 +67,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-         //引数 $data から name='img_name'を取得(アップロードするファイル情報)
+        // var_dump($data);
+        // exit();
+
+        if(count($data) == 7) {
+        //引数 $data から name='img_name'を取得(アップロードするファイル情報)
          $imageFile = $data['avatar'];
 
          //$imageFileからファイル名を取得(拡張子あり)
@@ -107,6 +111,11 @@ class RegisterController extends Controller
 
          //画像を横400px, 縦400pxにリサイズし保存
          $image->resize(400,400)->save(storage_path() . '/app/public/avatars/' . $fileNameToStore );
+
+        } else {
+            $fileNameToStore = null;
+        }
+
 
         return User::create([
             'name' => $data['name'],
